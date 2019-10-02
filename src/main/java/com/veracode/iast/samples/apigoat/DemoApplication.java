@@ -1,4 +1,4 @@
-package com.veracode.iast.samples.apigoat.apigoat;
+package com.veracode.iast.samples.apigoat;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
