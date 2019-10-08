@@ -46,9 +46,9 @@ fi;
 SESSION_ID=$(curl -H "Content-Type:application/json" -H "x-iast-event:session_start" --silent --insecure -X POST -d "{\"BUILD_TAG\":\"${BUILD_TAG}\"}" ${AGENT_SERVER_URL}/events | jq -r '.session_id')
 echo "Using session_id: ${SESSION_ID}"
 
-export MAVEN_OPTS=${AGENT_PATH}
-mvn clean install
-# java ${AGENT_PATH} -jar target/java-api-goat-0.0.1-SNAPSHOT.jar
+# See the maven-surefire-plugin plugin configuration in pom.xml
+# to see how the tests are configured to run with the IAST Agent.
+mvn test
 
 # Send session_stop event to Agent Server.
 curl -H "Content-Type:application/json" -H "x-iast-event:session_stop" -H "x-iast-session-id:${SESSION_ID}" --silent --output /dev/null --insecure -X POST ${AGENT_SERVER_URL}/events
