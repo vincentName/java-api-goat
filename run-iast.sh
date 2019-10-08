@@ -28,8 +28,8 @@ export IASTAGENT_REMOTE_ENDPOINT_HTTP_LOCATION=localhost
 export IASTAGENT_REMOTE_ENDPOINT_HTTP_PORT=10010
 export AGENT_SERVER_URL="https://${IASTAGENT_REMOTE_ENDPOINT_HTTP_LOCATION}:${IASTAGENT_REMOTE_ENDPOINT_HTTP_PORT}/iast/as/v1"
 
-export LD_LIBRARY_PATH="/mnt/c/iast/iast-dev/out/agent/Debug/java/"
-export AGENT_PATH=-agentpath:${LD_LIBRARY_PATH}libagent_java_${PLATFORM}${EXT}
+#export LD_LIBRARY_PATH="/mnt/c/iast/iast-dev/out/agent/Debug/java/X"
+#export AGENT_PATH=-agentpath:${LD_LIBRARY_PATH}libagent_java_${PLATFORM}${EXT}
 
 # Set a unique identifier for this run (based on the folder name and timestamp)
 export BUILD_TAG=$(basename "$PWD")-$(date +%Y-%m-%d_%H-%M-%S)
@@ -48,7 +48,7 @@ echo "Using session_id: ${SESSION_ID}"
 
 # See the maven-surefire-plugin plugin configuration in pom.xml
 # to see how the tests are configured to run with the IAST Agent.
-mvn test
+mvn clean test
 
 # Send session_stop event to Agent Server.
 curl -H "Content-Type:application/json" -H "x-iast-event:session_stop" -H "x-iast-session-id:${SESSION_ID}" --silent --output /dev/null --insecure -X POST ${AGENT_SERVER_URL}/events
