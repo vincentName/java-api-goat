@@ -42,4 +42,10 @@ public class HelloControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("Hello, IAST!")));
     }
+
+    @Test
+    public void getHelloInvalidUrl() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/foo?name=bar").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
 }
