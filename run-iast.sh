@@ -28,8 +28,10 @@ export IASTAGENT_REMOTE_ENDPOINT_HTTP_LOCATION=localhost
 export IASTAGENT_REMOTE_ENDPOINT_HTTP_PORT=10010
 export AGENT_SERVER_URL="https://${IASTAGENT_REMOTE_ENDPOINT_HTTP_LOCATION}:${IASTAGENT_REMOTE_ENDPOINT_HTTP_PORT}/iast/as/v1"
 
+# Download (or reference) the IAST Agent.
 #export LD_LIBRARY_PATH="/mnt/c/iast/iast-dev/out/agent/Debug/java/X"
 #export AGENT_PATH=-agentpath:${LD_LIBRARY_PATH}libagent_java_${PLATFORM}${EXT}
+curl -sSL https://s3.us-east-2.amazonaws.com/app.veracode-iast.io/iast-ci.sh | sh
 
 # Set a unique identifier for this run (based on the folder name and timestamp)
 export BUILD_TAG=$(basename "$PWD")-$(date +%Y-%m-%d_%H-%M-%S)
