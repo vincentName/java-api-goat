@@ -12,8 +12,8 @@ pipeline {
             }
         }
         stage('Test') {
-            wrap([$class: 'VeracodeInteractiveBuildWrapper', location: 'agent-server.veracode-iast.io', port: '10010']) {
-                steps {
+            steps {
+                wrap([$class: 'VeracodeInteractiveBuildWrapper', location: 'agent-server.veracode-iast.io', port: '10010']) {
                     sh 'curl -sSL https://s3.us-east-2.amazonaws.com/app.veracode-iast.io/iast-ci.sh | sh'
                     sh 'mvn test'
                 }
