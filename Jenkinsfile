@@ -8,8 +8,19 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean compile'
             }
         }
+        stage('Test') { 
+            steps {
+                sh 'curl -sSL https://s3.us-east-2.amazonaws.com/app.veracode-iast.io/iast-ci.sh | sh'
+                sh 'mvn test'
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                sh 'echo mvn install would run here...'
+            }
+    }
     }
 }
