@@ -21,8 +21,8 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
-                sh 'mvn install'
+                sh 'echo mvn install would run here...'
             }
-    }
+        }
     }
 }
