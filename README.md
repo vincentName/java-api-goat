@@ -1,3 +1,3 @@
-# java-api-goat1111 111111
+# java-api-goat1111 11
 
 A simple Java Spring Boot REST App with Vulnerabilities.
